@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/places/tabs/discover"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ user.name }}</ion-title>
+    <ion-title *ngIf="user">{{ user.name }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,7 +14,7 @@
         <ion-img src="/assets/shapes.svg"></ion-img>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row *ngIf="user">
       <ion-col>
         <h1 text-center>{{ user.email }}</h1>
         <h1 text-center>{{ user.description }}</h1>

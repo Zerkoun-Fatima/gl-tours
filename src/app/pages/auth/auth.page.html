@@ -16,65 +16,37 @@
           <ion-list>
             <ion-item>
               <ion-label position="floating">Email</ion-label>
-              <ion-input
-                type="email"
-                id="email"
-                ngModel
-                name="email"
-                required
-                email
-                #emailCtrl="ngModel"
-              ></ion-input>
+              <ion-input type="email" id="email" ngModel name="email" required email #emailCtrl="ngModel"></ion-input>
             </ion-item>
-            <ion-item *ngIf="!emailCtrl.valid && emailCtrl.touched" lines="none"
-              ><ion-label color="danger">
+            <ion-item *ngIf="!emailCtrl.valid && emailCtrl.touched" lines="none">
+              <ion-label color="danger">
                 Should be a valide email address.
-              </ion-label></ion-item
-            >
+              </ion-label>
+            </ion-item>
             <ion-item>
               <ion-label position="floating">Password</ion-label>
-              <ion-input
-                type="password"
-                id="password"
-                ngModel
-                name="password"
-                required
-                minlength="3"
-                #passCtrl="ngModel"
-              ></ion-input>
+              <ion-input type="password" id="password" ngModel name="password" required minlength="3"
+                #passCtrl="ngModel"></ion-input>
             </ion-item>
-            <ion-item *ngIf="!passCtrl.valid && passCtrl.touched" lines="none"
-              ><ion-label color="danger">
+            <ion-item *ngIf="!passCtrl.valid && passCtrl.touched" lines="none">
+              <ion-label color="danger">
                 Should be a valide password.
-              </ion-label></ion-item
-            >
+              </ion-label>
+            </ion-item>
           </ion-list>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col size-sm="6" offset-sm="3">
           <div margin-vertical>
-            <ion-button
-              type="submit"
-              id="expense-add"
-              (click)="onLogin()"
-              *ngIf="!isLoading"
-              expand="block"
-              [disabled]="!loginForm.valid"
-            >
+            <ion-button type="submit" id="expense-add" *ngIf="!isLoading" expand="block" [disabled]="!loginForm.valid">
               LOG IN
             </ion-button>
-            <ion-button
-              href="/signup"
-              id="expense-add"
-              expand="block"
-              fill="clear"
-              expand="block"
-            >
+            <ion-button href="/signup" id="expense-add" expand="block" fill="clear" expand="block">
               SIGN UP
             </ion-button>
-          </div></ion-col
-        >
+          </div>
+        </ion-col>
       </ion-row>
     </ion-grid>
   </form>

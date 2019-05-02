@@ -15,15 +15,15 @@ import { AuthService } from "../../services/auth.service";
   providedIn: "root"
 })
 export class AuthGuard implements CanLoad {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
   canLoad(
     route: Route,
     segments: UrlSegment[]
   ): Observable<boolean> | Promise<boolean> | boolean {
-    if (!this.authService.userIsAuthenticated) {
+    if (!this.authService.isAuthenticated) {
       this.router.navigateByUrl("/login");
     }
-    return this.authService.userIsAuthenticated;
+    return this.authService.isAuthenticated;
   }
 }

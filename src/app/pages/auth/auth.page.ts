@@ -1,7 +1,7 @@
 import { AuthService } from "./../../services/auth.service";
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { LoadingController } from "@ionic/angular";
+import { LoadingController, AlertController } from "@ionic/angular";
 import { NgForm } from "@angular/forms";
 
 @Component({
@@ -11,17 +11,21 @@ import { NgForm } from "@angular/forms";
 })
 export class AuthPage implements OnInit {
   isLoading = false;
+  email: string;
+  password: string;
+
   constructor(
     private authService: AuthService,
     private router: Router,
-    private loadingCtrl: LoadingController
-  ) {}
+    private loadingCtrl: LoadingController,
+    private alertCtrl: AlertController,
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   onLogin() {
     this.isLoading = true;
-    this.authService.login();
+    this.authService.login(this.email, this.password);
     this.loadingCtrl
       .create({ keyboardClose: true, message: "Logging in..." })
       .then(elem => {
@@ -37,8 +41,30 @@ export class AuthPage implements OnInit {
   onSubmit(form: NgForm) {
     if (!form.valid) return;
 
-    const email = form.value.email;
-    const pass = form.value.password;
-    console.log(email, pass);
+    this.isLoading = true;
+    const { email, password } = form.value;
+    this.loadingCtrl
+      .create({ keyboardClose: true, message: "Logging in ..." })
+      .then(elem => {
+        elem.present();
+        this.authService.login(email, password).subscribe(data => {
+          this.isLoading = false;
+          elem.dismiss();
+          this.router.navigateByUrl("/places/tabs/profil/1");
+        }, error => {
+          let message = "";
+          for (const key in error.error.errors) {
+            message += error.error.errors[key];
+            break;
+          }
+          elem.dismiss();
+          this.showAlert(message);
+        });
+      });
+  }
+
+  showAlert(message: string) {
+    this.alertCtrl.create({ header: "Signup failed", message, buttons: ["Okey"] })
+      .then(el => el.present());
   }
 }

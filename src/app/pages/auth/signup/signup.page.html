@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content padding>
-  <form #form="ngForm" (ngSubmit)="login(form)">
+  <form #form="ngForm" (ngSubmit)="signup(form)">
     <ion-grid>
       <ion-row>
         <ion-col size-sm="6" offset-sm="3">
@@ -15,20 +15,22 @@
           <ion-list>
             <ion-item>
               <ion-label position="floating">Name</ion-label>
-              <ion-input type="text"></ion-input>
+              <!-- <ion-input type="text" ngModel name="name" id="name" name #nameCtrl="ngModel"></ion-input> -->
+              <ion-input type="text" name="name" ngModel></ion-input>
             </ion-item>
             <ion-item>
               <ion-label position="floating">Email</ion-label>
-              <ion-input type="text"></ion-input>
+              <ion-input type="text" name="email" ngModel></ion-input>
             </ion-item>
             <ion-item>
               <ion-label position="floating">Password</ion-label>
-              <ion-input type="password"></ion-input>
+              <ion-input type="password" name="password" ngModel></ion-input>
             </ion-item>
             <ion-item>
               <ion-label position="floating">Confirm your password</ion-label>
-              <ion-input type="password"></ion-input> </ion-item
-          ></ion-list>
+              <ion-input type="password"></ion-input>
+            </ion-item>
+          </ion-list>
         </ion-col>
       </ion-row>
 
@@ -38,17 +40,11 @@
             <ion-button type="submit" expand="block">
               SIGN UP
             </ion-button>
-            <ion-button
-              type="button"
-              href="/login"
-              expand="block"
-              fill="clear"
-              expand="block"
-            >
+            <ion-button type="button" href="/login" expand="block" fill="clear" expand="block">
               LOG IN
             </ion-button>
-          </div></ion-col
-        >
+          </div>
+        </ion-col>
       </ion-row>
     </ion-grid>
   </form>

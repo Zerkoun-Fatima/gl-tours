@@ -15,7 +15,7 @@ export class ProfilPage implements OnInit {
     private authService: AuthService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(paramMap => {
@@ -26,7 +26,7 @@ export class ProfilPage implements OnInit {
       const userId = paramMap.get("profilId");
       console.log("user'id", userId);
 
-      this.user = this.authService.getUser();
+      this.user = this.authService.getUser().value;
     });
   }
 }
